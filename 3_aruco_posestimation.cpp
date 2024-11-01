@@ -7,6 +7,8 @@
 int main(){
 
     cv::VideoCapture inputVideo(0);
+    double fps = inputVideo.get(cv::CAP_PROP_FPS);
+    std::cout << "Frames per second: " << fps << std::endl;
     cv::Ptr<cv::aruco::Dictionary> dictionary = cv::aruco::getPredefinedDictionary(cv::aruco::DICT_6X6_50);
 
     int image_width = 1920;
@@ -42,7 +44,10 @@ int main(){
             cv::aruco::drawDetectedMarkers(outputImage, markerCorners, markerIds);
             cv::aruco::estimatePoseSingleMarkers(markerCorners, 0.05, cameraMatrix, distCoeffs, rvecs, tvecs);
             for(int i=0; i<markerIds.size(); i++)
+            {
                 cv::drawFrameAxes(outputImage, cameraMatrix, distCoeffs, rvecs[i], tvecs[i], 0.1);
+                std::cout << "Marker " << markerIds[i] << " : " << tvecs[i] << rvecs[i] << std::endl;
+            }
         }
 
         cv::imshow("outputImage", outputImage);
@@ -51,6 +56,7 @@ int main(){
         if (key == 'q' || key == 27) {
             break;
         }
+
     }
 
     // Release the video and destroy all windows
