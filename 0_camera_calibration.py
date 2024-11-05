@@ -10,7 +10,7 @@ objp *= 0.031
 objpoints = [] # 3d point in real world space
 imgpoints = [] # 2d points in image plane
 
-cap = cv.VideoCapture(0)
+cap = cv.VideoCapture(4)
 
 while True:
 
@@ -26,7 +26,7 @@ while True:
     ret, corners = cv.findChessboardCorners(gray, (12, 8), None)
 
     # Draw and display the corners if found
-    if ret:
+    if key == ord('s') and ret:
         cv.drawChessboardCorners(frame, (12, 8), corners, ret)
         cv.imshow('Chessboard corners', frame)
         objpoints.append(objp)
