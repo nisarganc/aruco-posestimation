@@ -5,12 +5,19 @@ criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
 objp = np.zeros((12*8,3), np.float32)
 objp[:,:2] = np.mgrid[0:12,0:8].T.reshape(-1,2)
-objp *= 0.031
+objp *= 31
 
 objpoints = [] # 3d point in real world space
 imgpoints = [] # 2d points in image plane
 
 cap = cv.VideoCapture(4)
+
+width_value = 1920  # Replace with your camera's max width
+height_value = 1080  # Replace with your camera's max height
+
+
+cap.set(cv.CAP_PROP_FRAME_WIDTH, width_value)
+cap.set(cv.CAP_PROP_FRAME_HEIGHT, height_value)
 
 while True:
 
@@ -20,6 +27,7 @@ while True:
         break
 
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+
     cv.imshow('Camera feed', frame)
     key = cv.waitKey(1) & 0xFF
 
