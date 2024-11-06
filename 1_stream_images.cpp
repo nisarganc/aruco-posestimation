@@ -2,8 +2,8 @@
 #include <iostream>
 
 int main() {
-    // Open the camera. Change the index to match the USB camera if needed.
-    cv::VideoCapture cap(6);  // Use 6 for USB camera, or device file on Linux
+
+    cv::VideoCapture cap(6);  
 
     if (!cap.isOpened()) {
         std::cerr << "Error: Could not open the camera." << std::endl;
