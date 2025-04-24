@@ -21,7 +21,7 @@ cap.set(cv.CAP_PROP_FRAME_HEIGHT, height_value)
 
 # create video
 fourcc = cv.VideoWriter_fourcc(*"mp4v")
-video_writer = cv.VideoWriter("calibration_video.mp4", fourcc, 5, (width_value, height_value))
+video_writer = cv.VideoWriter("calibration_video_1.mp4", fourcc, 5, (width_value, height_value))
 
 # write video
 while True:
